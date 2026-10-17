@@ -61,7 +61,7 @@ mark{background:color-mix(in srgb,var(--accent) 22%,transparent);color:inherit;b
 /* ---------- shell ---------- */
 .app{display:grid;grid-template-columns:268px minmax(0,1fr);min-height:100%}
 .side{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:18px;padding:26px 20px 22px;background:var(--surface);border-right:1px solid var(--line);z-index:30}
-.back-port{display:inline-flex;align-items:center;font:600 12.5px/1 var(--f-body);color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);align-self:flex-start;margin:-6px 0 -4px 6px}.back-port:hover{color:var(--ink)}
+.back-port{display:flex;align-items:center;justify-content:center;gap:9px;font:700 13.5px/1 var(--f-body);color:#fff;text-decoration:none;padding:12px 14px;border-radius:12px;background:#1e221f;box-shadow:0 0 0 3px rgba(159,192,138,.6);margin:-4px 2px 0}.back-port:hover{filter:brightness(1.15)}.back-port svg{width:17px;height:17px}
 .brand{display:flex;align-items:center;gap:10px;padding:0 8px 18px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
 .brand-mark{width:30px;height:30px;position:relative;flex:none}
 .brand-mark i{position:absolute;border-radius:50%}
@@ -411,7 +411,7 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 <body>
 <div class="app" id="app">
   <aside class="side" id="side" aria-label="Freight Hub navigation">
-    <a class="back-port" id="backPort" href="../../">←&nbsp; All projects</a>
+    <a class="back-port" id="backPort" href="../../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span>Back to Resume Hub</span></a>
     <a class="brand" href="#home">
       <span class="brand-mark"><i></i><i></i></span>
       <span><b>Freight Hub</b><small>Training &amp; SOPs</small></span>
@@ -1132,5 +1132,7 @@ $('#themeBtn').addEventListener('click',()=>{
 document.getElementById('backPort').addEventListener('click',e=>{try{if(document.referrer&&new URL(document.referrer).pathname.replace(/index\.html$/,'')===new URL('../../',location.href).pathname){e.preventDefault();history.back()}}catch(_){}});
 route();
 </script>
+<style>.hub-back{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:9999;display:inline-flex;align-items:center;gap:10px;padding:13px 22px 13px 16px;border-radius:999px;background:#1e221f;color:#fff!important;font:600 15px/1 "Montserrat",system-ui,-apple-system,sans-serif;text-decoration:none!important;box-shadow:0 0 0 3px rgba(159,192,138,.75),0 14px 34px -10px rgba(0,0,0,.5);transition:transform .2s}.hub-back:hover{transform:translateY(-2px)}.hub-back:focus-visible{outline:3px solid #9fc08a;outline-offset:3px}.hub-back svg{width:20px;height:20px;flex:none}@media (max-width:640px){.hub-back{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));padding:12px 18px 12px 14px;font-size:14px}}@media print{.hub-back{display:none}}</style>
+<a class="hub-back" id="hubBackFloat" href="../../" onclick="try{if(document.referrer&&new URL(document.referrer).origin===location.origin){event.preventDefault();history.back()}}catch(e){}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span>Back to Resume Hub</span></a>
 </body>
 </html>
