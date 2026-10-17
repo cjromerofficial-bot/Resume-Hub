@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="CJ Romero: customer operations, CRM administration and AI enablement. Résumé plus live, clickable projects: a freight training hub, a freight returns BOL portal, a pickup and packing planner, and client web work.">
+<meta property="og:title" content="CJ Romero · Project Hub">
+<meta property="og:description" content="Résumé and live projects: freight training, BOL automation, packing planner and client websites.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3C9 9 6 15 8 22c2 5 7 7 8 7s6-2 8-7c2-7-1-13-8-19Z' fill='%239fc08a'/%3E%3Cpath d='M16 6v23' stroke='%235d8f5a' stroke-width='1.6'/%3E%3C/svg%3E">
+<title>CJ · Project Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}
+/* Layout: slim icon rail left; airy greenhouse workspace with a soft botanical leaf behind frosted-glass cards; prompt bar docked at the bottom */
+:root{
+  --bg:#f2f3ef; --bg-2:#e9ece4;
+  --ink:#1e221f; --muted:#737a73; --faint:#a3a9a2;
+  --glass:rgba(255,255,255,.55); --glass-strong:rgba(255,255,255,.78); --glass-edge:rgba(255,255,255,.95);
+  --line:rgba(30,40,30,.08);
+  --leaf-1:#c9dcb8; --leaf-2:#9fc08a; --vein:#7fa56a;
+  --accent:#2f6fe4; --live:#3c9a5f; --live-soft:rgba(60,154,95,.12); --soon:#b07a1c; --soon-soft:rgba(190,140,40,.12);
+  --shadow:0 1px 1px rgba(40,50,40,.03),0 14px 34px -18px rgba(40,60,40,.22);
+  --shadow-lift:0 2px 4px rgba(40,50,40,.05),0 26px 50px -22px rgba(40,70,40,.35);
+  --f-ui:"Montserrat","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101512; --bg-2:#151c17;
+  --ink:#e7ece6; --muted:#9aa49b; --faint:#667066;
+  --glass:rgba(32,42,35,.5); --glass-strong:rgba(36,48,40,.8); --glass-edge:rgba(255,255,255,.07);
+  --line:rgba(255,255,255,.07);
+  --leaf-1:#2d4a2f; --leaf-2:#3f6b40; --vein:#5d8f5a;
+  --accent:#6f9cff; --live:#6fd39a; --live-soft:rgba(111,211,154,.12); --soon:#e8b65a; --soon-soft:rgba(232,182,90,.12);
+  --shadow:0 1px 1px rgba(0,0,0,.3),0 14px 34px -18px rgba(0,0,0,.6);
+  --shadow-lift:0 2px 4px rgba(0,0,0,.3),0 26px 50px -22px rgba(0,0,0,.8);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101512; --bg-2:#151c17;
+  --ink:#e7ece6; --muted:#9aa49b; --faint:#667066;
+  --glass:rgba(32,42,35,.5); --glass-strong:rgba(36,48,40,.8); --glass-edge:rgba(255,255,255,.07);
+  --line:rgba(255,255,255,.07);
+  --leaf-1:#2d4a2f; --leaf-2:#3f6b40; --vein:#5d8f5a;
+  --accent:#6f9cff; --live:#6fd39a; --live-soft:rgba(111,211,154,.12); --soon:#e8b65a; --soon-soft:rgba(232,182,90,.12);
+  --shadow:0 1px 1px rgba(0,0,0,.3),0 14px 34px -18px rgba(0,0,0,.6);
+  --shadow-lift:0 2px 4px rgba(0,0,0,.3),0 26px 50px -22px rgba(0,0,0,.8);
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.6 var(--f-ui);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:10px}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+
+/* backdrop */
+.backdrop{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:radial-gradient(1200px 700px at 70% 40%,var(--bg-2),transparent 70%),var(--bg)}
+.leaf{position:absolute;left:28%;top:-4%;width:min(980px,90vw);height:auto;opacity:.55;filter:blur(1.5px);transform-origin:70% 10%;animation:breeze 14s ease-in-out infinite}
+@keyframes breeze{50%{transform:rotate(1.6deg) translateY(4px)}}
+
+/* shell */
+.shell{position:relative;z-index:1;display:grid;grid-template-columns:96px minmax(0,1fr);min-height:100%}
+.rail{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;gap:8px;padding:30px 0 22px;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(14px);border-right:1px solid var(--line);z-index:5}
+.rail .sep{width:32px;height:1px;background:var(--line);margin:10px 0 12px}
+.rail a,.rail button{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:var(--ink);opacity:.72;border:0;background:transparent;cursor:pointer;position:relative;text-decoration:none;transition:background .2s,opacity .2s}
+.rail a:hover,.rail button:hover{opacity:1;background:var(--glass)}
+.rail a.on{opacity:1;background:var(--glass-strong);box-shadow:var(--shadow)}
+.rail svg{width:24px;height:24px}
+.rail [data-tip]:hover::after{content:attr(data-tip);position:absolute;left:58px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:12.5px;font-weight:500;background:var(--ink);color:var(--bg);padding:6px 10px;border-radius:8px;opacity:1}
+.rail .grow{flex:1}
+.rail a.me{width:52px;height:52px;padding:0;border-radius:50%;overflow:hidden;opacity:1;display:block;background:radial-gradient(circle at 30% 30%,#4f8bff,#2457d6);box-shadow:0 0 0 3px var(--bg),0 0 0 5px #3b74f0;text-decoration:none;transition:transform .2s}
+.rail a.me:hover{transform:scale(1.05);background:radial-gradient(circle at 30% 30%,#4f8bff,#2457d6)}
+
+.main{min-width:0;padding:clamp(28px,6vh,80px) clamp(16px,6vw,140px) 40px;display:flex;flex-direction:column;min-height:100vh}
+.view{flex:1;display:flex;flex-direction:column}
+
+/* home */
+.hello{font-size:clamp(30px,3.6vw,46px);line-height:1.22;letter-spacing:-.01em;font-weight:400}
+.hello span{display:block}
+.hello em{font-style:normal;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:16px;margin-top:44px}
+.chip{border:1px solid var(--glass-edge);background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:999px;padding:15px 30px;font-size:16px;font-weight:400;cursor:pointer;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+.chip:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift)}
+.chip .dot{width:7px;height:7px;border-radius:50%}
+.chip.more{padding:15px 18px}
+.chip.more svg{width:22px;height:22px}
+.sub{font-size:clamp(19px,1.8vw,24px);color:var(--muted);font-weight:400;margin:clamp(48px,10vh,120px) 0 26px}
+
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.card{position:relative;display:flex;flex-direction:column;gap:12px;padding:30px 30px 34px;border-radius:22px;background:var(--glass);border:1px solid var(--glass-edge);backdrop-filter:blur(18px) saturate(1.1);-webkit-backdrop-filter:blur(18px) saturate(1.1);box-shadow:var(--shadow);text-decoration:none;cursor:pointer;min-width:0;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;transform-style:preserve-3d}
+.card:hover{box-shadow:var(--shadow-lift)}
+.card .ic{width:34px;height:34px;color:var(--ink)}
+.card .ic svg{width:34px;height:34px}
+.card h3{font-size:15px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;margin-top:18px;line-height:1.5}
+.card p{margin:0;color:var(--muted);font-size:15px;line-height:1.7}
+.status{position:absolute;right:20px;top:22px;font:500 11px/1 var(--f-ui);letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+.status i{width:6px;height:6px;border-radius:50%;background:currentColor}
+.status.live{color:var(--live);background:var(--live-soft)}
+.status.live i{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+.status.soon{color:var(--soon);background:var(--soon-soft)}
+.card .go{margin-top:auto;padding-top:10px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px;color:var(--ink);opacity:.0;transform:translateY(4px);transition:.25s}
+.card:hover .go{opacity:.8;transform:none}
+.card .go svg{width:16px;height:16px}
+
+/* prompt bar */
+.prompt{position:relative;margin-top:clamp(40px,8vh,110px);border-radius:24px;background:var(--glass);border:1px solid var(--glass-edge);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:var(--shadow);padding:22px 26px 20px}
+.prompt-row{display:flex;align-items:center;gap:18px}
+.prompt-row > svg{width:28px;height:28px;flex:none;color:var(--ink);opacity:.8}
+.prompt input{flex:1;min-width:0;border:0;background:transparent;outline:none;font:400 18px var(--f-ui);color:var(--ink);padding:10px 0}
+.prompt input::placeholder{color:var(--muted)}
+.send{width:52px;height:52px;border-radius:16px;border:1px solid var(--glass-edge);background:var(--glass-strong);display:grid;place-items:center;cursor:pointer;flex:none;box-shadow:var(--shadow)}
+.send svg{width:24px;height:24px}
+.send:hover{transform:translateX(2px)}
+.prompt-tools{display:flex;gap:14px;margin-top:16px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--glass-edge);background:var(--glass);border-radius:999px;padding:10px 20px;font-size:15px;color:var(--muted);cursor:pointer;text-decoration:none;position:relative}
+.pill:hover{color:var(--ink)}
+.pill svg{width:19px;height:19px}
+.menu{position:absolute;left:0;bottom:calc(100% + 10px);min-width:260px;background:var(--glass-strong);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-edge);border-radius:18px;box-shadow:var(--shadow-lift);padding:8px;z-index:20}
+.menu a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;text-decoration:none;font-size:14.5px;color:var(--ink)}
+.menu a:hover,.menu a.on{background:var(--glass)}
+.menu a small{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.results{position:absolute;left:0;right:0;bottom:calc(100% + 12px);background:var(--glass-strong);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-edge);border-radius:20px;box-shadow:var(--shadow-lift);padding:8px;max-height:min(420px,60vh);overflow-y:auto;z-index:20}
+.res{display:flex;align-items:flex-start;gap:14px;padding:12px 14px;border-radius:14px;cursor:pointer}
+.res.on,.res:hover{background:var(--glass)}
+.res .k{font:500 10.5px/1 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--faint);padding-top:5px;width:74px;flex:none}
+.res b{display:block;font-weight:500;font-size:15px}
+.res p{margin:2px 0 0;color:var(--muted);font-size:13.5px;line-height:1.5}
+.res-empty{padding:14px;color:var(--muted);font-size:14px}
+mark{background:color-mix(in srgb,var(--leaf-2) 45%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+
+/* project detail */
+.back{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);text-decoration:none;margin-bottom:28px;align-self:flex-start;padding:8px 14px 8px 10px;border-radius:999px;border:1px solid var(--glass-edge);background:var(--glass)}
+.back:hover{color:var(--ink)}
+.back svg{width:16px;height:16px}
+.proj{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,4vw,64px);align-items:center}
+.eyebrow{font-size:12px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.eyebrow .status{position:static}
+.proj h1{font-size:clamp(32px,4vw,52px);line-height:1.12;letter-spacing:-.015em;margin:16px 0 18px}
+.proj .lede{color:var(--muted);font-size:17px;line-height:1.7;max-width:52ch;margin:0}
+.points{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.points li{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.points li::before{content:"";width:8px;height:8px;border-radius:50%;margin-top:.55em;flex:none;background:var(--leaf-2);box-shadow:0 0 0 4px color-mix(in srgb,var(--leaf-2) 25%,transparent)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.tags span{font-size:12.5px;padding:6px 12px;border-radius:999px;background:var(--glass);border:1px solid var(--glass-edge);color:var(--muted)}
+.cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;font-weight:500;font-size:15px;text-decoration:none;border:1px solid var(--glass-edge);background:var(--glass);cursor:pointer}
+.btn svg{width:18px;height:18px}
+.btn.solid{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.solid:hover{transform:translateY(-1px)}
+.btn[aria-disabled="true"]{opacity:.55;cursor:default}
+
+.preview{perspective:1600px}
+.window{border-radius:22px;background:var(--glass-strong);border:1px solid var(--glass-edge);box-shadow:var(--shadow-lift);overflow:hidden;transform:rotateY(-14deg) rotateX(6deg);transition:transform .7s cubic-bezier(.2,.8,.2,1);text-decoration:none;display:block;color:inherit}
+.preview:hover .window{transform:none}
+.win-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.win-bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.win-bar i:nth-child(1){background:#ff6058}.win-bar i:nth-child(2){background:#ffbd2e}.win-bar i:nth-child(3){background:#29c940}
+.win-bar span{margin-left:12px;font:500 11.5px var(--f-mono);color:var(--muted);background:var(--glass);padding:4px 12px;border-radius:7px;flex:1;max-width:280px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.win-body{aspect-ratio:16/10;max-width:100%;position:relative;overflow:hidden}
+
+/* freight mini */
+.fh{position:absolute;inset:0;display:grid;grid-template-columns:22% 1fr;background:linear-gradient(135deg,#f6f1ff,#fff3f8)}
+.fh-side{background:#fff;border-right:1px solid #eee8f6;padding:8% 10%;display:flex;flex-direction:column;gap:7%}
+.fh-side b{display:block;height:9px;border-radius:4px;background:#6a45f5;width:70%}
+.fh-side i{display:block;height:6px;border-radius:3px;background:#e8e3f3}
+.fh-main{padding:5% 6%;display:flex;flex-direction:column;align-items:center;gap:4%}
+.fh-truck{width:46%;height:auto}
+.fh-title{font:700 clamp(11px,1.5vw,20px)/1 var(--f-ui);color:#1d1a2b;letter-spacing:-.02em}
+.fh-search{width:70%;height:8%;border-radius:6px;background:#fff;box-shadow:0 2px 8px rgba(60,30,140,.08)}
+.fh-grid{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:4%;margin-top:2%}
+.fh-grid div{height:clamp(18px,3.4vw,40px);border-radius:6px;background:#fff;box-shadow:0 2px 6px rgba(60,30,140,.07);display:flex;align-items:center;gap:8%;padding:0 7%}
+.fh-grid div::before{content:"";width:22%;aspect-ratio:1;border-radius:4px;background:var(--c)}
+.fh-grid div::after{content:"";flex:1;height:4px;border-radius:2px;background:#ece8f4}
+
+/* box 3d (packaging) */
+.pk{position:absolute;inset:0;display:grid;place-items:center;background:
+  linear-gradient(var(--line) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/24px 24px}
+.pk-scene{width:150px;height:110px;perspective:900px}
+.pk-box{position:relative;width:150px;height:110px;transform-style:preserve-3d;transform:rotateX(-22deg) rotateY(-32deg);animation:spin 16s linear infinite}
+@keyframes spin{to{transform:rotateX(-22deg) rotateY(328deg)}}
+.pk-box i{position:absolute;left:0;top:0;display:grid;place-items:center;font:500 11px var(--f-mono);color:#6b4b1f;border:1px solid rgba(110,75,30,.25)}
+.pk-box .f{width:150px;height:110px;background:#e9c48c;transform:translateZ(45px)}
+.pk-box .b{width:150px;height:110px;background:#d9ac6a;transform:rotateY(180deg) translateZ(45px)}
+.pk-box .r{width:90px;height:110px;left:30px;background:#d1a161;transform:rotateY(90deg) translateZ(75px)}
+.pk-box .l{width:90px;height:110px;left:30px;background:#d1a161;transform:rotateY(-90deg) translateZ(75px)}
+.pk-box .t{width:150px;height:90px;top:10px;background:#f2d6a8;transform:rotateX(90deg) translateZ(55px)}
+.pk-box .t::after{content:"";position:absolute;left:0;right:0;top:50%;height:10px;margin-top:-5px;background:rgba(160,120,60,.35)}
+.pk-box .u{width:150px;height:90px;top:10px;background:#c99a57;transform:rotateX(-90deg) translateZ(55px)}
+.pk-dims{position:absolute;left:6%;bottom:8%;display:flex;gap:8px;flex-wrap:wrap}
+.pk-dims span{font:500 11.5px var(--f-mono);padding:5px 9px;border-radius:7px;background:var(--glass-strong);border:1px solid var(--glass-edge)}
+
+/* bol doc */
+.bol{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(160deg,var(--bg-2),var(--bg))}
+.bol-doc{width:62%;aspect-ratio:8.5/11;max-height:88%;background:#fffdf8;border-radius:6px;box-shadow:0 18px 40px -16px rgba(0,0,0,.35);transform:rotate(-4deg);padding:6%;display:flex;flex-direction:column;gap:5%;position:relative;color:#2a2a2a}
+.bol-doc h4{margin:0;font:600 clamp(9px,1.2vw,14px)/1 var(--f-ui);letter-spacing:.2em}
+.bol-row{display:grid;grid-template-columns:1fr 1fr;gap:6%}
+.bol-row div{height:clamp(16px,3vw,34px);border:1px solid #ddd6c8;border-radius:3px;position:relative}
+.bol-row div::after{content:"";position:absolute;left:8%;right:30%;top:40%;height:3px;background:#e7e0d1;border-radius:2px}
+.bol-lines{display:flex;flex-direction:column;gap:6px;flex:1}
+.bol-lines i{height:5px;border-radius:3px;background:#ece6d8}
+.bol-lines i:nth-child(2n){width:80%}
+.bol-stamp{position:absolute;right:8%;bottom:9%;font:700 clamp(8px,1.1vw,12px)/1 var(--f-mono);color:#c0392b;border:2px solid #c0392b;padding:5px 8px;border-radius:4px;transform:rotate(-12deg);opacity:.75;letter-spacing:.1em}
+.soon-band{position:absolute;left:0;right:0;bottom:0;padding:12px 18px;font-size:13px;color:var(--muted);background:linear-gradient(transparent,var(--glass-strong) 40%);text-align:center}
+
+/* resume */
+.resume{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:22px;margin-top:8px}
+.panel{border-radius:22px;background:var(--glass);border:1px solid var(--glass-edge);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--shadow);padding:30px;min-width:0}
+.panel h2{font-size:13px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;margin-bottom:18px}
+.panel p{margin:0 0 12px;color:var(--muted);line-height:1.75;max-width:62ch}
+.skill-grp{margin-bottom:18px}
+.skill-grp small{display:block;font-size:12px;font-weight:500;color:var(--faint);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.plist{display:flex;flex-direction:column;gap:10px}
+.plist a{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;text-decoration:none;background:var(--glass);border:1px solid var(--glass-edge)}
+.plist a:hover{background:var(--glass-strong)}
+.plist svg{width:22px;height:22px;flex:none}
+.plist span{flex:1;min-width:0}
+.plist .status{position:static}
+.xp{display:flex;flex-direction:column;gap:18px}
+.xp div{border-left:2px solid var(--leaf-2);padding-left:16px}
+.xp b{font-weight:500}
+.xp small{display:block;color:var(--faint);font-size:13px}
+.links{display:flex;flex-direction:column;gap:10px}
+.links a,.links div{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;background:var(--glass);border:1px solid var(--glass-edge);text-decoration:none;font-size:15px;min-width:0;overflow-wrap:anywhere}
+.links svg{width:20px;height:20px;flex:none}
+
+.hello-row{display:flex;align-items:center;gap:clamp(18px,2.5vw,30px)}
+.portrait{width:clamp(72px,7vw,96px);height:clamp(72px,7vw,96px);border-radius:50%;object-fit:cover;object-position:50% 30%;flex:none;border:3px solid var(--glass-edge);box-shadow:var(--shadow-lift)}
+.portrait.big{width:clamp(88px,9vw,120px);height:clamp(88px,9vw,120px)}
+.role{margin:10px 0 0;color:var(--muted);font-size:clamp(15px,1.4vw,18px)}
+.loc{margin:6px 0 0;color:var(--faint);font-size:14px;display:flex;align-items:center;gap:6px}
+.loc svg{width:16px;height:16px}
+.xp ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:14.5px;line-height:1.65;display:flex;flex-direction:column;gap:4px}
+.note{margin:18px 0 0;font-size:14px;color:var(--muted);padding:12px 16px;border-radius:14px;background:var(--glass);border:1px solid var(--glass-edge);max-width:56ch}
+.win-body .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left}
+.rail a.me img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 28%}
+.foot{margin-top:28px;font-size:12.5px;color:var(--faint);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+.mobile-top{display:none}
+@media (max-width:1200px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.proj,.resume{grid-template-columns:minmax(0,1fr)}.window{transform:none}}
+@media (max-width:720px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .rail{position:fixed;top:auto;bottom:0;left:0;right:0;height:auto;flex-direction:row;justify-content:space-around;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));border-right:0;border-top:1px solid var(--line)}
+  .rail .sep,.rail .grow,.rail .hide-m{display:none}
+  .rail a,.rail button{width:44px;height:44px}
+  .rail [data-tip]:hover::after{display:none}
+  .rail a.me{width:40px;height:40px;box-shadow:0 0 0 2px var(--bg),0 0 0 4px #3b74f0}
+  .main{padding-bottom:110px}
+  .cards{grid-template-columns:minmax(0,1fr)}
+  .chips{gap:10px;margin-top:30px}
+  .chip{padding:11px 20px;font-size:14.5px}
+  .card{padding:24px}
+  .card .go{opacity:.8;transform:none}
+  .prompt{padding:16px 16px 14px}
+  .prompt input{font-size:16px}
+  .leaf{left:-10%;width:150vw;opacity:.4}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true">
+  <svg class="leaf" viewBox="0 0 1000 1000" fill="none">
+    <defs>
+      <radialGradient id="lg" cx="45%" cy="55%" r="60%"><stop offset="0" style="stop-color:var(--leaf-2);stop-opacity:.9"/><stop offset=".7" style="stop-color:var(--leaf-1);stop-opacity:.6"/><stop offset="1" style="stop-color:var(--leaf-1);stop-opacity:0"/></radialGradient>
+    </defs>
+    <path d="M940 0 C850 120 760 230 640 380" style="stroke:var(--vein)" stroke-width="7" stroke-linecap="round" opacity=".7"/>
+    <path d="M640 380 C520 330 330 360 230 470 C120 590 140 780 260 880 C360 960 520 960 600 900 C640 960 700 980 760 940 C900 850 900 640 820 520 C780 460 710 410 640 380Z" fill="url(#lg)"/>
+    <g style="stroke:var(--vein)" stroke-linecap="round" opacity=".55" fill="none">
+      <path d="M640 380 C600 520 560 680 470 900" stroke-width="4"/>
+      <path d="M622 460 C540 450 400 470 290 540" stroke-width="2"/>
+      <path d="M605 540 C520 560 380 610 250 700" stroke-width="2"/>
+      <path d="M585 620 C500 660 390 740 300 840" stroke-width="2"/>
+      <path d="M560 710 C510 760 470 830 430 900" stroke-width="2"/>
+      <path d="M630 450 C700 460 780 500 840 560" stroke-width="2"/>
+      <path d="M612 540 C690 570 780 640 830 720" stroke-width="2"/>
+      <path d="M592 630 C660 680 730 760 760 860" stroke-width="2"/>
+    </g>
+  </svg>
+</div>
+
+<div class="shell">
+  <nav class="rail" aria-label="Site navigation">
+    <button class="hide-m" id="backBtn" data-tip="Back" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="m13.5 8.5-3.5 3.5 3.5 3.5"/></svg></button>
+    <span class="sep"></span>
+    <a href="#home" data-route="home" data-tip="Home" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.8"/></svg></a>
+    <button id="searchBtn" data-tip="Search" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="7.5"/><path d="m20.5 20.5-4-4"/></svg></button>
+    <a href="#project-freight-hub" data-route="project" data-tip="Projects" aria-label="Projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M3.5 13h4.5l1.5 2.5h5L16 13h4.5"/><path d="m9 8.5 3 2 3-2"/></svg></a>
+    <a href="#resume" data-route="resume" data-tip="Résumé" aria-label="Résumé"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 5.5 1.5 1.5 3-3M3.5 12.5 5 14l3-3M3.5 19.5 5 21l3-3"/><path d="M11 6h9.5M11 13h9.5M11 20h9.5"/></svg></a>
+    <a href="#contact" data-route="contact" data-tip="Contact" aria-label="Contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h11M8 14.5h3M16.5 2.5v5M14 5h5"/></svg></a>
+    <button id="themeBtn" data-tip="Light / dark" aria-label="Toggle light or dark theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.8 20 7.4v9.2L12 21.2 4 16.6V7.4z"/><circle cx="12" cy="12" r="3"/></svg></button>
+    <span class="grow"></span>
+    <span class="sep"></span>
+    <a class="me" href="#resume" aria-label="About CJ"><img src="assets/cj.jpg" alt=""></a>
+  </nav>
+
+  <main class="main">
+    <div class="view" id="view"></div>
+    <footer class="foot"><span>© <span id="yr"></span> CJ Romero · Aurora, Colorado</span><span>Press <b>/</b> to search</span></footer>
+  </main>
+</div>
+
+<script>
+/* ================= site content (edit here) ================= */
+const SITE = {
+  name: 'CJ',
+  fullName: 'Cory (CJ) Romero',
+  role: 'Customer Operations · CRM Administration · Systems & AI Enablement',
+  location: 'Aurora, Colorado',
+  photo: 'assets/cj.jpg',
+  summary: [
+    'I help operations teams scale by building the systems, processes and dashboards they need to deliver better experiences. My background spans customer support, CRM administration, process improvement and team enablement.',
+    'That path runs from launching Amazon’s largest Colorado driver training program, to founding a coaching business with 95% client retention, to customer support at REP Fitness, where I was selected as 1 of 12 AI Champions leading AI integration across the company.',
+    'I build practical tools around problems I run into at work. Every project on this site is live and clickable.'
+  ],
+  skills: {
+    'Operations & Analysis': ['Process improvement','SOP development','KPI tracking','Data analysis','Reporting dashboards','Root-cause analysis','Vendor & carrier management','Stakeholder presentations'],
+    'Customer Experience': ['Omnichannel support (email, phone, SMS)','CSAT management','Escalation handling','Client lifecycle & onboarding','Knowledge base management'],
+    'Systems & Tools': ['Kustomer (admin)','NetSuite','Shopify / Shopify Plus','Google Workspace','Microsoft Office','ServiceNow'],
+    'AI & Technical': ['AI tool evaluation & rollout','Prompt writing','Claude','Cursor','HTML / CSS / JavaScript','React','SEO'],
+  },
+  experience: [
+    { role:'Customer Support Specialist', org:'REP Fitness', place:'Westminster, CO', dates:'Aug 2025 – Present', bullets:[
+      'Designed and launched three AI-powered internal tools that automated claims submission, freight return processing and order packing.',
+      'Maintain a 90% CSAT average across 200+ tickets a month by email, phone and SMS.',
+      'Selected as 1 of 12 company-wide AI Champions; leading AI implementation for Customer Support, from tool evaluation and prompt engineering to rollout.',
+      'Redesigned the customer-facing knowledge base with Cursor and custom code, raising the average article rating from 27.1% to 33.2% and cutting negative feedback to zero, while sustaining 7,000+ monthly views.',
+      'Built a NetSuite report on carrier-damage replacements that surfaced $15,000+ in previously unmeasured carrier-driven costs.',
+      'Built the team-wide freight rescue tracking system; administer Kustomer CRM; authored the Freight Return SOP and quick-reference guide.']},
+    { role:'Safety & Security Operations Coordinator (Contract)', org:'InnovAge', place:'Lowry, CO', dates:'Oct 2024 – Sep 2026', bullets:[
+      'Monitored physical security systems across 24 medical facilities nationwide in a 24/7 call center, resolving alerts, access control and credentialing issues.',
+      'Managed high-volume ticketing and incident documentation in ServiceNow and coordinated first response for critical incidents.']},
+    { role:'Founder & Head Coach', org:'Project Maverick, LLC', place:'Commerce City, CO', dates:'Apr 2023 – Oct 2024', bullets:[
+      'Founded and scaled a hybrid fitness coaching business to $5–6K/month with 95% client retention and a 70% sales close rate.',
+      'Designed the full client lifecycle (intake, onboarding, follow-up and re-engagement) and a lead generation system.']},
+    { role:'Fitness Manager (promoted from Personal Trainer)', org:'Anytime Fitness', place:'Denver, CO', dates:'Nov 2021 – Mar 2023', bullets:[
+      'Averaged 30% above monthly membership sales targets and generated $40K+ in personal training revenue in 2022.',
+      'Led a 3-trainer team and redesigned the sales process, driving a 45% quarter-over-quarter conversion increase.']},
+    { role:'DOT Driver Trainer Manager (promoted from Driver and OTR Dispatcher)', org:'Amazon', place:'Denver, CO', dates:'Jan 2018 – Jul 2021', bullets:[
+      'Led the ground-up launch of the driver training program at DDV5, Colorado’s largest Amazon delivery station at the time, including its first DOT-certified program.',
+      'Designed a training flow that produced 4x the new-hire driver volume of any other Colorado station: 120+ drivers a week at peak with an 85% pass rate.',
+      'Built a performance-tracking and grading system for third-party vendors and led a team of 5 trainers.']},
+    { role:'Assistant Manager (promoted from Busser)', org:'Denver Zoological Foundation', place:'Denver, CO', dates:'Apr 2016 – Oct 2017', bullets:[
+      'Earned Employee of the Month in my first month; oversaw food-and-beverage operations, staff training and a section of Denver Zoo Lights.']},
+  ],
+  education: ['SAE Institute · Certificate, Applied Sciences in Audio Engineering (2015)'],
+  certifications: ['AI Fluency: Framework & Foundations','Google Cybersecurity Professional','Google IT Support Professional','Introduction to HTML, CSS & JavaScript','JavaScript Basics'],
+  languages: 'English (native) · Spanish (elementary)',
+  contact: { email:'romerocj@live.com', linkedin:'https://www.linkedin.com/in/cjromerofficial', github:'https://github.com/cjromerofficial-bot' },
+};
+
+const PROJECTS = [
+  { id:'freight-hub', title:'Freight Training Hub', status:'live', href:'projects/freight-hub/index.html', url:'projects/freight-hub',
+    icon:'truck', card:'An interactive portal that teaches new teammates every freight scenario, from missing pallets to rescues.',
+    lede:'A training and SOP portal for an LTL freight team, built from the freight SOPs I wrote. New hires search any scenario, follow a step-by-step playbook, and copy ready-made carrier emails instead of digging through a long document.',
+    points:['9 searchable playbooks: dock checks, reconsignments, returns, special deliveries, rescues and more','Step checklists with a progress truck that drives as you work a ticket','Hold-vs-return cost calculator and a rescue “check alternatives first” gate','Copy-ready carrier email templates and a contacts directory','3D CSS truck hero, light and dark themes, works on phones'],
+    tags:['HTML','CSS 3D','Vanilla JS','Training design','LTL freight'] },
+  { id:'bol-portal', title:'Freight Returns BOL Portal', status:'live', href:'projects/bol-portal/index.html', url:'projects/bol-portal',
+    repo:'https://github.com/cjromerofficial-bot/FreightReturnBOLPortalExample',
+    icon:'doc', card:'Type an RMA and get pallets, a live LTL quote, a carrier BOL and a pickup in about two minutes.',
+    lede:'An internal app that turns a customer freight return into print-ready shipping documents. A rep types an RMA number; the portal pulls the order from the ERP, suggests pallets, gets a carrier quote, creates the BOL, schedules the pickup and writes tracking back to the ERP.',
+    points:['RMA lookup prefills the customer, address and returning items','Pallet suggestions with freight class from density and a to-scale 3D trailer view','Quote shows the amount to deduct from the refund; any change forces a new quote','Duplicate-proof BOL creation with step-by-step recovery if a carrier call fails','BOL, packing list and barcoded labels as PDFs'],
+    note:'This demo runs entirely in your browser with fictional ERP and carrier data. Try RMA100001 through RMA100004.',
+    tags:['React','Vite','Node.js','three.js','pdf-lib','36 automated tests'] },
+  { id:'packing-planner', title:'Pickup & Packing Planner', status:'live', href:'projects/packing-planner/index.html', url:'projects/packing-planner',
+    repo:'https://github.com/cjromerofficial-bot/PickupPackingPlanner',
+    icon:'box', card:'Turns an equipment order into exact boxes and recommends the one vehicle a customer should bring.',
+    lede:'A single-page tool for support and warehouse teams. It expands an equipment order into the real list of boxes, recommends the smallest vehicle that safely fits everything for a customer pickup, and produces clean packing lists for freight forwarders and returns vendors.',
+    points:['Shopify-style product search with forgiving matching','Import packing slips, sales orders and RMAs from PDFs or screenshots (in-browser OCR)','Conservative vehicle recommendation from car to box truck, with a one-line reason for each rule-out','Animated truck load preview, scaled to each box’s real size','Copyable packing lists with lb↔kg and in↔cm toggles'],
+    note:'Runs on a fictional sample catalog. Click “load a sample order” to try it.',
+    tags:['Vanilla JS','SVG','pdf.js','Tesseract OCR','Zero backend'] },
+  { id:'pc-music', title:'Plum Creek Music Lessons', status:'live', href:'https://pcmusiclessons.com', external:true, url:'pcmusiclessons.com',
+    repo:'https://github.com/cjromerofficial-bot/pcmusiclessons',
+    icon:'music', card:'A client website for a remote piano and drum teacher, built to turn visitors into trial lessons.',
+    lede:'A marketing site I designed and built for a friend’s remote music lesson studio. It introduces the instructor, explains how online lessons work, and moves visitors toward booking a trial lesson.',
+    points:['Stage-curtain landing intro','Trial lesson booking flow','Student reviews carousel','Instructor and music production pages','Responsive layout for phones and tablets'],
+    note:'Client project. Opens the live site in a new tab.',
+    tags:['React','TypeScript','Vite','Client work'] },
+];
+
+/* ================= icons ================= */
+const I = {
+  truck:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5h11v10h-11z"/><path d="M13.5 9.5h4l3 3.5v3.5h-7"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>',
+  box:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 20.5 7v10L12 21.2 3.5 17V7z"/><path d="M3.5 7 12 11.2 20.5 7M12 11.2v10M7.8 4.9l8.4 4.2"/></svg>',
+  doc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.8h8.5l4 4v14.4H6z"/><path d="M14.5 2.8v4h4M9 11h7M9 14h7M9 17h4"/></svg>',
+  quote:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M10 6.5C6.5 7 4.5 9.5 4.5 13v4.5h5V13h-3c0-2.5 1.3-4 3.5-4.5M19.5 6.5c-3.5.5-5.5 3-5.5 6.5v4.5h5V13h-3c0-2.5 1.3-4 3.5-4.5"/></svg>',
+  arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  back:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18 9 12l6-6"/></svg>',
+  wand:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4 20 11-11 2 2L6 22z" transform="translate(0 -2)"/><path d="m13 9 2 2M18 3v3M16.5 4.5h3M20.5 9v2M19.5 10h2M10 3.5v2M9 4.5h2"/></svg>',
+  send:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M5 4.5 20 12 5 19.5 7.5 12z"/></svg>',
+  grid:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>',
+  user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.6 4-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></svg>',
+  dots:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>',
+  mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>',
+  music:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5.5l11-2.5v12.5"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="15.5" r="2.5"/><path d="M9 9.5 20 7"/></svg>',
+  github:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.7c-2.7.6-3.2-1.2-3.2-1.2-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.1-.2-4.4-1.1-4.4-4.7 0-1 .4-1.9 1-2.6-.1-.3-.4-1.2.1-2.5 0 0 .8-.3 2.6 1a9 9 0 0 1 4.8 0c1.8-1.3 2.6-1 2.6-1 .5 1.3.2 2.2.1 2.5.6.7 1 1.6 1 2.6 0 3.7-2.3 4.5-4.4 4.7.3.3.7.9.7 1.8v2.7c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5Z"/></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>',
+  ext:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+};
+const CHIP_COLORS = {'freight-hub':'#6a45f5','bol-portal':'#2f6fe4','packing-planner':'#d9a35a','pc-music':'#f07a2a'};
+const linkAttrs = p => p.external ? 'target="_blank" rel="noopener"' : '';
+
+/* ================= helpers ================= */
+const $ = (s,r=document)=>r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const statusPill = p => p.status==='live'?'<span class="status live"><i></i>Live</span>':'<span class="status soon"><i></i>Coming soon</span>';
+const view = $('#view');
+
+/* ================= search ================= */
+function buildIndex(){
+  const ix=[];
+  PROJECTS.forEach(p=>ix.push({kind:'Project',title:p.title,text:[p.card,p.lede,...p.points,...p.tags].join(' '),go:'#project-'+p.id}));
+  Object.entries(SITE.skills).forEach(([g,arr])=>arr.forEach(s=>ix.push({kind:'Skill',title:s,text:g+' skill',go:'#resume'})));
+  SITE.experience.forEach(x=>ix.push({kind:'Experience',title:`${x.role} · ${x.org}`,text:[x.dates,x.place,...x.bullets].join(' '),go:'#resume'}));
+  ix.push({kind:'About',title:'Résumé',text:SITE.summary.join(' ')+' experience skills about resume',go:'#resume'});
+  ix.push({kind:'Contact',title:'Contact',text:'contact email linkedin github hire reach',go:'#contact'});
+  return ix;
+}
+const INDEX=buildIndex();
+function search(q){
+  const ws=q.toLowerCase().split(/\s+/).filter(Boolean);
+  return INDEX.map(e=>{const hay=(e.title+' '+e.text).toLowerCase();if(!ws.every(w=>hay.includes(w)))return null;
+    let sc=0;ws.forEach(w=>{if(e.title.toLowerCase().includes(w))sc+=5;sc+=hay.split(w).length-1});if(e.kind==='Project')sc+=2;return {...e,sc}}).filter(Boolean).sort((a,b)=>b.sc-a.sc).slice(0,7);
+}
+function hl(text,q){
+  let s=esc(text.length>130?text.slice(0,130)+'…':text);
+  q.toLowerCase().split(/\s+/).filter(w=>w.length>1).forEach(w=>{s=s.replace(new RegExp('('+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>')});
+  return s;
+}
+
+/* ================= views ================= */
+function promptBar(){
+  return `<section class="prompt" id="prompt">
+    <div class="results" id="results" hidden role="listbox"></div>
+    <div class="menu" id="projMenu" hidden>${PROJECTS.map(p=>`<a href="#project-${p.id}">${I[p.icon].replace('<svg','<svg width="20" height="20"')}<span>${p.title}</span><small style="color:var(--${p.status==='live'?'live':'soon'})">${p.status==='live'?'Live':'Soon'}</small></a>`).join('')}</div>
+    <div class="prompt-row">${I.wand}<input id="q" type="search" autocomplete="off" placeholder="Search my projects, skills or experience" aria-label="Search projects, skills or experience"><button class="send" id="sendBtn" aria-label="Go to top result">${I.send}</button></div>
+    <div class="prompt-tools"><button class="pill" id="projPill" aria-haspopup="true" aria-expanded="false">${I.grid}Projects${I.chev}</button><a class="pill" href="#resume">${I.user}Résumé</a></div>
+  </section>`;
+}
+function wirePrompt(){
+  const q=$('#q'),box=$('#results'),menu=$('#projMenu'),pill=$('#projPill');let items=[],cur=0;
+  const render=()=>{const v=q.value.trim();if(v.length<2){box.hidden=true;return}items=search(v);cur=0;
+    box.innerHTML=items.length?items.map((r,i)=>`<div class="res${i?'':' on'}" data-i="${i}" role="option"><span class="k">${r.kind}</span><div style="min-width:0"><b>${hl(r.title,v)}</b>${r.kind==='Project'?`<p>${hl(r.text,v)}</p>`:''}</div></div>`).join(''):`<div class="res-empty">Nothing matches “${esc(v)}”. Try “freight”, “BOL” or “packaging”.</div>`;box.hidden=false;menu.hidden=true};
+  const go=i=>{const r=items[i];if(r){box.hidden=true;q.value='';location.hash=r.go.slice(1)}};
+  q.addEventListener('input',render);q.addEventListener('focus',render);
+  q.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(!items.length)return;cur=(cur+(e.key==='ArrowDown'?1:-1)+items.length)%items.length;box.querySelectorAll('.res').forEach((el,i)=>el.classList.toggle('on',i===cur))}else if(e.key==='Enter'){e.preventDefault();go(cur)}else if(e.key==='Escape'){box.hidden=true;q.blur()}});
+  q.addEventListener('blur',()=>setTimeout(()=>box.hidden=true,150));
+  box.addEventListener('mousedown',e=>{const el=e.target.closest('.res');if(el){e.preventDefault();go(+el.dataset.i)}});
+  $('#sendBtn').addEventListener('click',()=>{if(q.value.trim().length<2){q.focus();return}if(!items.length)render();go(cur)});
+  pill.addEventListener('click',e=>{e.stopPropagation();menu.hidden=!menu.hidden;pill.setAttribute('aria-expanded',String(!menu.hidden))});
+  document.addEventListener('click',e=>{if(!menu.contains(e.target)&&e.target!==pill){menu.hidden=true;pill.setAttribute('aria-expanded','false')}},{once:false});
+}
+
+function renderHome(){
+  view.innerHTML=`
+    <div class="hello-row"><img class="portrait" src="${SITE.photo}" alt="Portrait of CJ Romero" width="96" height="96">
+    <h1 class="hello"><span>Hello! I’m <em>${esc(SITE.name)}</em>.</span><span>What would you like to explore?</span></h1></div>
+    <div class="chips">
+      ${PROJECTS.map(p=>`<a class="chip" href="#project-${p.id}"><span class="dot" style="background:${CHIP_COLORS[p.id]||'var(--leaf-2)'}"></span>${p.title}</a>`).join('')}
+      <a class="chip" href="#resume">Résumé</a>
+      <a class="chip more" href="#contact" aria-label="Contact">${I.dots}</a>
+    </div>
+    <h2 class="sub">Get started with one of my projects below</h2>
+    <div class="cards">${PROJECTS.map(p=>`<a class="card" href="#project-${p.id}">${statusPill(p)}<span class="ic">${I[p.icon]}</span><h3>${p.title}</h3><p>${p.card}</p><span class="go">See the project${I.arrow}</span></a>`).join('')}</div>
+    ${promptBar()}`;
+  wirePrompt();tiltCards();
+}
+
+function previewFor(p){
+  if(p.id==='freight-hub') return `<a class="window" href="${p.href}"><div class="win-bar"><i></i><i></i><i></i><span>/projects/${p.url}</span></div><div class="win-body"><div class="fh">
+      <div class="fh-side"><b></b><i></i><i></i><i></i><i style="width:70%"></i><i></i><i style="width:60%"></i></div>
+      <div class="fh-main">
+        <svg class="fh-truck" viewBox="0 0 200 80"><ellipse cx="100" cy="72" rx="96" ry="7" fill="#3a3550" opacity=".18"/><rect x="40" y="10" width="120" height="48" rx="4" fill="#6a45f5"/><text x="100" y="40" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-weight="700" font-size="12">FREIGHT HUB</text><path d="M8 26h28v32H8z" fill="#f07a2a"/><path d="M12 30h16v12H12z" fill="#cfe6ff"/><circle cx="22" cy="62" r="7" fill="#1b1826"/><circle cx="70" cy="62" r="7" fill="#1b1826"/><circle cx="140" cy="62" r="7" fill="#1b1826"/></svg>
+        <div class="fh-title">Freight Hub</div><div class="fh-search"></div>
+        <div class="fh-grid">${['#f07a2a','#2f7fe0','#e0474c','#9a4fe0','#1f9d63','#e0a106'].map(c=>`<div style="--c:${c}"></div>`).join('')}</div>
+      </div></div></div></a>`;
+  const bar=`<div class="win-bar"><i></i><i></i><i></i><span>${p.external?'':'/'}${p.url}</span></div>`;
+  if(p.id==='packing-planner') return `<a class="window" href="${p.href}">${bar}<div class="win-body"><div class="pk">
+      <div class="pk-scene"><div class="pk-box"><i class="f">L × H</i><i class="b"></i><i class="r">W</i><i class="l"></i><i class="t"></i><i class="u"></i></div></div>
+      <div class="pk-dims"><span>Cargo van ✓</span><span>12 boxes</span><span>486 lb</span></div></div></div></a>`;
+  if(p.id==='pc-music') return `<a class="window" href="${p.href}" ${linkAttrs(p)}>${bar}<div class="win-body"><img class="shot" src="assets/pcmusic.jpg" alt="Plum Creek Music Lessons home page" loading="lazy"></div></a>`;
+  return `<a class="window" href="${p.href}">${bar}<div class="win-body"><div class="bol">
+      <div class="bol-doc"><h4>BILL OF LADING</h4><div class="bol-row"><div></div><div></div></div><div class="bol-row"><div></div><div></div></div><div class="bol-lines"><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="bol-stamp">PRO #</span></div>
+      </div></div></a>`;
+}
+
+function renderProject(p){
+  const live=p.status==='live';
+  const idx=PROJECTS.indexOf(p), next=PROJECTS[(idx+1)%PROJECTS.length];
+  view.innerHTML=`
+    <a class="back" href="#home">${I.back}All projects</a>
+    <section class="proj">
+      <div style="min-width:0">
+        <div class="eyebrow">Project ${String(idx+1).padStart(2,'0')} / ${String(PROJECTS.length).padStart(2,'0')} ${statusPill(p)}</div>
+        <h1>${p.title}</h1>
+        <p class="lede">${p.lede}</p>
+        <ul class="points">${p.points.map(x=>`<li>${x}</li>`).join('')}</ul>
+        <div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+        ${p.note?`<p class="note">${p.note}</p>`:''}
+        <div class="cta">
+          ${live?`<a class="btn solid" href="${p.href}" ${linkAttrs(p)}>${p.external?'Visit the live site':'Open the live project'} ${p.external?I.ext:I.arrow}</a>`:`<span class="btn" aria-disabled="true">Demo coming soon</span>`}
+          ${p.repo?`<a class="btn" href="${p.repo}" target="_blank" rel="noopener">${I.github}Code on GitHub</a>`:''}
+          <a class="btn" href="#project-${next.id}">Next: ${next.title}</a>
+        </div>
+      </div>
+      <div class="preview">${previewFor(p)}</div>
+    </section>
+    ${promptBar()}`;
+  wirePrompt();
+}
+
+function renderResume(){
+  view.innerHTML=`
+    <a class="back" href="#home">${I.back}Home</a>
+    <div class="hello-row"><img class="portrait big" src="${SITE.photo}" alt="Portrait of CJ Romero" width="120" height="120">
+      <div style="min-width:0"><h1 class="hello"><span>${esc(SITE.fullName)}</span></h1><p class="role">${esc(SITE.role)}</p><p class="loc">${I.pin}${esc(SITE.location)}</p></div></div>
+    <div class="resume" style="margin-top:36px">
+      <div style="display:flex;flex-direction:column;gap:22px;min-width:0">
+        <section class="panel"><h2>About</h2>${SITE.summary.map(s=>`<p>${esc(s)}</p>`).join('')}</section>
+        <section class="panel"><h2>Experience</h2><div class="xp">${SITE.experience.map(x=>`<div><b>${esc(x.role)}</b><small>${esc(x.org)} · ${esc(x.place)} · ${esc(x.dates)}</small><ul>${x.bullets.map(b=>`<li>${esc(b)}</li>`).join('')}</ul></div>`).join('')}</div></section>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:22px;min-width:0">
+        <section class="panel"><h2>Projects</h2><div class="plist">${PROJECTS.map(p=>`<a href="#project-${p.id}">${I[p.icon]}<span>${p.title}</span>${statusPill(p)}</a>`).join('')}</div></section>
+        <section class="panel"><h2>Skills</h2>${Object.entries(SITE.skills).map(([g,arr])=>`<div class="skill-grp"><small>${g}</small><div class="tags" style="margin:0">${arr.map(s=>`<span>${esc(s)}</span>`).join('')}</div></div>`).join('')}</section>
+        <section class="panel"><h2>Education &amp; certifications</h2>${SITE.education.map(e=>`<p>${esc(e)}</p>`).join('')}<div class="tags" style="margin:4px 0 14px">${SITE.certifications.map(c=>`<span>${esc(c)}</span>`).join('')}</div><p>${esc(SITE.languages)}</p></section>
+      </div>
+    </div>`;
+}
+
+function renderContact(){
+  const c=SITE.contact, rows=[];
+  if(c.email) rows.push(`<div>${I.mail}<span style="flex:1;min-width:0">${esc(c.email)}</span><button class="pill" data-copy="${esc(c.email)}" style="padding:6px 14px;font-size:13px">Copy</button></div>`);
+  if(c.linkedin) rows.push(`<a href="${esc(c.linkedin)}" target="_blank" rel="noopener">${I.link}LinkedIn · cjromerofficial</a>`);
+  if(c.github) rows.push(`<a href="${esc(c.github)}" target="_blank" rel="noopener">${I.github}GitHub · cjromerofficial-bot</a>`);
+  rows.push(`<div>${I.pin}${esc(SITE.location)}</div>`);
+  view.innerHTML=`
+    <a class="back" href="#home">${I.back}Home</a>
+    <h1 class="hello"><span>Let’s talk freight,</span><span>tools, or your next project.</span></h1>
+    <div class="resume" style="margin-top:36px">
+      <section class="panel"><h2>Reach me</h2>${rows.length?`<div class="links">${rows.join('')}</div>`:`<p>Contact links are being added. In the meantime, explore the projects and check back soon.</p>`}</section>
+      <section class="panel"><h2>Explore</h2><div class="plist">${PROJECTS.map(p=>`<a href="#project-${p.id}">${I[p.icon]}<span>${p.title}</span>${statusPill(p)}</a>`).join('')}</div></section>
+    </div>`;
+  view.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied'}catch(e){b.textContent='Select to copy'}}));
+}
+
+function tiltCards(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||matchMedia('(hover: none)').matches) return;
+  view.querySelectorAll('.card').forEach(c=>{
+    c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateX(${(-y*6).toFixed(2)}deg) rotateY(${(x*8).toFixed(2)}deg) translateY(-4px)`});
+    c.addEventListener('mouseleave',()=>{c.style.transform=''});
+  });
+}
+
+/* ================= router ================= */
+function route(){
+  const h=(location.hash||'#home').slice(1);
+  let key='home';
+  if(h.startsWith('project-')){const p=PROJECTS.find(x=>'project-'+x.id===h);if(p){renderProject(p);key='project'}else renderHome()}
+  else if(h==='resume'){renderResume();key='resume'}
+  else if(h==='contact'){renderContact();key='contact'}
+  else renderHome();
+  document.querySelectorAll('.rail [data-route]').forEach(a=>a.classList.toggle('on',a.dataset.route===key));
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+function focusSearch(){
+  if(!$('#q')){location.hash='home';setTimeout(()=>$('#q')?.focus(),30);return}
+  $('#q').scrollIntoView({behavior:'smooth',block:'center'});$('#q').focus({preventScroll:true});
+}
+$('#searchBtn').addEventListener('click',focusSearch);
+$('#backBtn').addEventListener('click',()=>{if(location.hash&&location.hash!=='#home')history.back()});
+document.addEventListener('keydown',e=>{if(e.key==='/'&&!/input|textarea/i.test(document.activeElement.tagName)){e.preventDefault();focusSearch()}});
+$('#themeBtn').addEventListener('click',()=>{const r=document.documentElement,cur=r.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');r.dataset.theme=cur==='dark'?'light':'dark';store.set('hub-theme',r.dataset.theme)});
+(()=>{const t=store.get('hub-theme',null);if(t)document.documentElement.dataset.theme=t})();
+$('#yr').textContent=new Date().getFullYear();
+route();
+</script>
+</body>
+</html>
